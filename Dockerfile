@@ -7,6 +7,8 @@ COPY package*.json ./
 RUN npm install
 # Copia o restante do código fonte
 COPY . .
+RUN npm run build
+
 # Executa o "vue-cli-service build" para gerar a pasta /dist
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html/dinoraw
